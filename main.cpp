@@ -7,8 +7,8 @@ using namespace std;
 int main()
 {
     int command;
-    Aeroflot* flights = new Aeroflot[0];
     int cnt = 0;
+    Aeroflot* flights = new Aeroflot[cnt];
     while (true)
     {
         Menu();
@@ -16,39 +16,32 @@ int main()
         try {
             switch (command) {
                 case 1: {
-                    Aeroflot flight;
-                    cin >> flight;
-                    cnt++;
-                    addFlight(flights, cnt, flight);
+                    addFlight(flights, cnt);
                     break;
                 }
                 case 2: {
-                    int index;
-                    if (!cnt)
-                        throw Exception("There is no place for the object!\n");
-                    cout << "Enter index from 0 to" << cnt - 1 << endl;
-                    cin >> index;
-                    if (index >= cnt)
-                        throw Exception("It is impossible to insert into this position!\n");
-                    Aeroflot flight;
-                    cin >> flight;
-                    flights[index] = flight;
+                    addFlightByIndex(flights, cnt); // commit
                     break;
                 }
                 case 3: {
-
+                    removeFlight(flights, cnt);
                     break;
                 }
                 case 4: {
-                    for (int i = 0; i < cnt; i++) {
-                        cout << flights[i];
-                    }
+                    printFlights(flights, cnt);
                     break;
                 }
                 case 5: {
+                    editFlights(flights, cnt);
                     break;
                 }
                 case 6: {
+                    break;
+                }
+                case 7: {
+                    break;
+                }
+                case 8: {
                     cout << "Goodbye!\n";
                     return 0;
                 }
