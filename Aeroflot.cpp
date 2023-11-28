@@ -69,11 +69,11 @@ return os;
 }
 
 istream& operator>>(istream& is, Aeroflot& obj) {
-    cout << "Enter destination: ";
+    cout << "Enter destination: \n";
     is >> obj.destination;
-    cout << "Enter flight number: ";
+    cout << "Enter flight number: \n";
     is >> obj.flightNumber;
-    cout << "Enter aircraft type: ";
+    cout << "Enter aircraft type: \n";
     is >> obj.aircraftType;
 
     return is;

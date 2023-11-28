@@ -13,7 +13,8 @@ void Menu()
             "5. Edit flight\n"
             "6. Sort flights\n"
             "7. Check flights\n"
-            "8. Exit\n";
+            "8. Exit\n"
+            "Enter a command:\n";
 }
 
 void addFlight(Aeroflot* &flights, int &cnt)
@@ -74,8 +75,9 @@ void printFlights(Aeroflot* &flights, int &cnt)
 {
     if (!cnt)
         throw Exception("The list of flights is empty!\n");
+    std::cout << "There are " << cnt << " flights:\n";
     for (int i = 0; i < cnt; i++) {
-        std::cout << flights[i];
+        std::cout << i + 1 << ". \n" << flights[i] << "\n";
     }
 }
 
@@ -91,6 +93,42 @@ void editFlights(Aeroflot* &flights, int &cnt)
     Aeroflot flight;
     std::cin >> flight;
     flights[index] = flight;
+}
+
+void sortFlights(Aeroflot* &flights, int &cnt)
+{
+    for (int i = 0; i < cnt; i++)
+    {
+        for (int j = 0; j < cnt - 1; j++)
+        {
+            if (flights[j].getFlightNumber() > flights[j + 1].getFlightNumber())
+            {
+                Aeroflot temp(flights[j]);
+                flights[j] = flights[j + 1];
+                flights[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void checkFlight(Aeroflot* &flights, int &cnt)
+{
+    std::string dest;
+    std::cout << "Enter destination:\n";
+    std::cin >> dest;
+    bool flag = false;
+    for (int i = 0; i < cnt; i++)
+    {
+        std:: string destination = flights[i].getDestination();
+        if (dest == destination)
+        {
+            std::cout << "Flight number: " << flights[i].getFlightNumber() << ", "
+            << "Aircraft type: " << flights[i].getAircraftType() << std::endl;
+            flag = true;
+        }
+    }
+    if (!flag)
+        std::cout << "There are no such flights!\n";
 }
 
 #endif //TP_2LABA_FUNCTIONS_H
