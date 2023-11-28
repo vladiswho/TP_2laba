@@ -6,11 +6,11 @@ class Strings
 {
 private:
     std::string alphabet;
-    std::string line;
 public:
     Strings();
     ~Strings();
-
+    void checkFile(const std::string& file);
+    std::string getAlphabet();
 };
 
 

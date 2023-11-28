@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Aeroflot.h"
 #include "functions.h"
-#include <algorithm>
+#include "Strings.h"
 
 using namespace std;
 
@@ -67,11 +67,18 @@ int main()
         case 2:{
             while (true)
             {
-                cout << "Enter file name:\n";
-                //
-                return 0;
+                try
+                {
+                    cout << "Enter file name:\n";
+                    std::string file;
+                    cin >> file;
+                    Strings object;
+                    object.checkFile(file);
+                    return 0;
+                }
+                catch (Exception error) {
+                    cout << error;}
             }
         }
-
     }
 }
